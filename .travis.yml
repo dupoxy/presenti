@@ -2,7 +2,7 @@ language: go
 
 go:
   - 1.2
-  
+
 install:
   - export PATH=$HOME/gopath/bin:$PATH
   - go get github.com/dupoxy/presenti

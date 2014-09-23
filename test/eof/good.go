@@ -17,5 +17,4 @@ import (
 func main() {
 	fmt.Println("bad")
 }
-
 /* #nb: * Bla bla */
