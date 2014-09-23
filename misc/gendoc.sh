@@ -4,7 +4,7 @@
 cd ..
 lister=`go list`
 go test $lister
-go test -coverprofile=coverage.out $lister
+#go test -coverprofile=coverage.out $lister
 go install $lister
 misc/doc.sh presenti
 
