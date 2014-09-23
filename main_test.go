@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"path"
 	"strings"
 	"testing"
 )
@@ -31,8 +32,8 @@ func TestDo(t *testing.T) {
 	gopathlist := strings.Split(gopath, ":")
 	gopath = gopathlist[0]
 	for _, tt := range dotests {
-		inpath := gopath + "/" + testfilepath + "/" + tt.in
-		outpath := gopath + "/" + testfilepath + "/" + tt.out
+		inpath := path.Join(gopath, testfilepath, tt.in)
+		outpath := path.Join(gopath, testfilepath, tt.out)
 		b, err := exec.Command("presenti", inpath).CombinedOutput()
 		if err != nil {
 			fmt.Println(err)
