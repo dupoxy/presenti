@@ -20,9 +20,10 @@ func main() {
 	do()
 	fmt.Println("bad")
 }
+
 /* #nb: * Bla bla */
 
 func do() {
-	
+
 	fmt.Println("do")
 }

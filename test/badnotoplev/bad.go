@@ -18,9 +18,9 @@ import (
  */
 
 func main() {
-	
+
 	/* #nb: THIS IS NOT a top level comment
 	Bla bla */
-	
+
 	fmt.Println("bad")
 }
