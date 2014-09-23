@@ -24,6 +24,10 @@ import (
 To Install:
 
 	$ go get -u github.com/dupoxy/presenti
+	
+build status:
+
+.image https://drone.io/github.com/dupoxy/presenti/status.png
 
 * Readme
 
