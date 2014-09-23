@@ -21,11 +21,7 @@ var dotests = []struct {
 	in  string
 	out string
 }{
-	{"good.go", "good.out"},
-	{"badnonewline/bad.go", "badnonewline/bad.out"},
-	{"badnonewline/bad.go", "badnonewline/bad.out"},
-	{"badnotoplev/bad.go", "badnotoplev/bad.out"},
-	{"eof/good.go", "eof/good.out"},
+	{"test.go", "test.out"},
 }
 
 func TestDo(t *testing.T) {

@@ -148,7 +148,7 @@ func do(input string) error {
 			if del != nil {
 				return fmt.Errorf("os.Remove: %v", del)
 			}
-			return fmt.Errorf("check: %v", err)
+			return fmt.Errorf("the generated present file as an error : %v", err)
 		}
 
 	default: // write output to stdout
@@ -168,7 +168,7 @@ func do(input string) error {
 			if del != nil {
 				return fmt.Errorf("os.Remove: %v", del)
 			}
-			return fmt.Errorf("check: %v", err)
+			return fmt.Errorf("the generated present output as an error: %v", err)
 		}
 		err = os.Remove(f.Name())
 		if err != nil {
