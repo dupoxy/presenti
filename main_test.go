@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"strings"
 	"testing"
 )
 
@@ -27,6 +28,8 @@ var dotests = []struct {
 }
 
 func TestDo(t *testing.T) {
+	gopathlist := strings.Split(gopath, ":")
+	gopath = gopathlist[0]
 	for _, tt := range dotests {
 		inpath := gopath + "/" + testfilepath + "/" + tt.in
 		outpath := gopath + "/" + testfilepath + "/" + tt.out
