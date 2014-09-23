@@ -29,10 +29,9 @@ COMMAND DOCUMENTATION
 	$ cd $GOPATH/src/github.com/dupoxy/presenti
 	$ present
 
-
 SUBDIRECTORIES
 
-	example
 	misc
 	notebook
+	test
 

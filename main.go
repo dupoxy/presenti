@@ -24,7 +24,7 @@ import (
 To Install:
 
 	$ go get -u github.com/dupoxy/presenti
-	
+
 build status:
 
 .image https://drone.io/github.com/dupoxy/presenti/status.png
@@ -93,7 +93,7 @@ for more on presenti:
 
 var (
 	article = flag.Bool("a", false, "save output to an article file")
-	slide   = flag.Bool("s", false, "save output to a slide file")	
+	slide   = flag.Bool("s", false, "save output to a slide file")
 )
 
 func main() {
@@ -104,6 +104,7 @@ func main() {
 		flag.Usage()
 		os.Exit(1)
 	}
+
 	err := do(args[0])
 	if err != nil {
 		log.Fatal(err)
