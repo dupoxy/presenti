@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"go/scanner"
 	"go/token"
+	"strconv"
 	"strings"
 
 	"github.com/dupoxy/presenti/notebook"
@@ -34,12 +35,16 @@ func makeNoteBook(file string, source []byte) (*notebook.NoteBook, error) {
 	var s scanner.Scanner
 	s.Init(fset.AddFile(file, fset.Base(), len(source)), source, eh, scanner.ScanComments)
 	nbcommentlit := "" // used to store a found nbcommentlit
+	nbcommentline := 0
 	expectedline := 0
 	for {
 		pos, tok, lit := s.Scan()
 		if tok == token.EOF {
 			// take care of end of file nbcommentlit
 			if nbcommentlit != "" && expectedline != 0 {
+				nbStart := noteBookMarker + " # from source line " + strconv.Itoa(nbcommentline) + " */"
+				currentNoteLine, err := newFilteredNote(nbStart)
+				nb.Save(currentNoteLine)
 				currentNote, err := newFilteredNote(nbcommentlit)
 				if err != nil {
 					return nil, fmt.Errorf("FilteredNote: %v", err)
@@ -54,6 +59,9 @@ func makeNoteBook(file string, source []byte) (*notebook.NoteBook, error) {
 			expectedline = 0  // and put expectedline back to 0
 
 		case expectedline == lineNum(fset, pos): // in case it is
+			nbStart := noteBookMarker + " # from source line " + strconv.Itoa(nbcommentline) + " */"
+			currentNoteLine, err := newFilteredNote(nbStart)
+			nb.Save(currentNoteLine)
 			currentNote, err := newFilteredNote(nbcommentlit)
 			if err != nil {
 				return nil, fmt.Errorf("FilteredNote: %v", err)
@@ -68,6 +76,7 @@ func makeNoteBook(file string, source []byte) (*notebook.NoteBook, error) {
 		case tok == token.COMMENT && topLevelComment(fset, pos) && strings.Contains(lit, noteBookMarker):
 			// set nbcommentlit
 			nbcommentlit = lit
+			nbcommentline = lineNum(fset, pos)
 			// split it by lines
 			commentlines := strings.Split(nbcommentlit, "\n")
 			// set expectedline

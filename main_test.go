@@ -21,7 +21,7 @@ var dotests = []struct {
 	in  string
 	out string
 }{
-	{"test.go", "test.out"},
+	{"test.go", "test.article"},
 }
 
 func TestDo(t *testing.T) {

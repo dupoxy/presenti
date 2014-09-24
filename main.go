@@ -83,7 +83,7 @@ To Install it:
 	$ go get -u code.google.com/p/go.talks/present
 
 for more on presenti:
-	
+
 	$ cd $GOPATH/src/github.com/dupoxy/presenti
 	$ present
 `
@@ -164,11 +164,11 @@ func do(input string) error {
 		// Parse present file to check errors
 		err = check(f, f.Name())
 		if err != nil {
-			del := os.Remove(f.Name())
-			if del != nil {
-				return fmt.Errorf("os.Remove: %v", del)
+			ren := os.Rename(f.Name(), f.Name()+".err")
+			if ren != nil {
+				return fmt.Errorf("os.Rename: %v", ren)
 			}
-			return fmt.Errorf("the generated present output as an error: %v", err)
+			return fmt.Errorf("the generated present output as an error: %v\nPlease open %v.err", err, f.Name())
 		}
 		err = os.Remove(f.Name())
 		if err != nil {
