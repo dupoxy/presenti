@@ -41,7 +41,7 @@ To do so, it uses a notebook marker:
 
 .code main.go /^const/,/\n/
 
-And also by only using top level comments and checking that they have an umpty \n after the end.
+And also by only using top level comments and checking that they have an empty \n after the end.
 
 * why
 
